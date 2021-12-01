@@ -11,3 +11,7 @@ test("should print Fizz", () => {
 test("should print Buzz", () => {
   expect(fizzbuzz()[4]).toEqual("Buzz");
 });
+
+test("should print FizzBuzz", () => {
+  expect(fizzbuzz()[14]).toEqual("FizzBuzz");
+});
