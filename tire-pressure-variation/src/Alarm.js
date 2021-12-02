@@ -3,10 +3,11 @@ import Sensor from "./Sensor";
 var alarmOn = Symbol();
 
 export default class Alarm {
-  constructor() {
+  constructor(sensor = new Sensor(), logger = console) {
     this.lowPressureThreshold = 17;
     this.highPressureThreshold = 21;
-    this.sensor = new Sensor();
+    this.sensor = sensor;
+    this.logger = logger;
     this[alarmOn] = false;
   }
 
@@ -16,12 +17,12 @@ export default class Alarm {
     if (psiPressureValue < this.lowPressureThreshold || this.highPressureThreshold < psiPressureValue) {
       if(!this[alarmOn]) {
         this[alarmOn] = true;
-        console.log("Alarm activated!");
+        this.logger.log("Alarm activated!");
       }
     } else {
       if(this[alarmOn]) {
         this[alarmOn] = false;
-        console.log("Alarm deactivated!");
+        this.logger.log("Alarm deactivated!");
       }
     }
   }
